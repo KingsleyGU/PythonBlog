@@ -15,3 +15,8 @@ class Posts(models.Model):
 	author = models.CharField(max_length = 100)
 	title = models.CharField(max_length = 150)
 	src = models.ImageField(upload_to = get_upload_file_name)
+
+class Users(models.Model):
+
+	username = models.CharField(max_length = 100)
+	password = models.CharField(max_length = 100)

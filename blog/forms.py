@@ -1,7 +1,7 @@
 from django import forms
 from models import Books
 from models import Posts
-from models import Users
+from models import User
 
 class BookForm(forms.ModelForm):
 
@@ -15,8 +15,8 @@ class PostsForm(forms.ModelForm):
 		model = Posts
 		fields = ('author','title','src')
 
-class UsersForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
 
 	class Meta:
-		model = Users
+		model = User
 		fields = ('username','password')	
