@@ -1,0 +1,13 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		{% for photos in Pics %}
+		     <span>{{ photos.title }}<span>
+		     <img class="img-rounded" style="width:200px; height:200px;" src="/{{ photos.src }}">
+		{% endfor %}
+	</div>
+</body>
+</html>
