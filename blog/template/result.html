@@ -1,8 +1,5 @@
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
-</head>
-<body>
+{% include 'header.html' %} 
+	{{ username }}
 	<div class="container">
 		{% for photos in Pics %}
 		     <span>{{ photos.title }}<span>

@@ -11,8 +11,7 @@ class Books(models.Model):
   	# bodytext = models.TextField()
   	# timeStamp = models.DateTimeField()
 class Posts(models.Model):
-
-	author = models.CharField(max_length = 100)
+	author = models.CharField(max_length = 30)
 	title = models.CharField(max_length = 150)
 	src = models.ImageField(upload_to = get_upload_file_name)
 

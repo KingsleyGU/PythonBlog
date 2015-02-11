@@ -31,9 +31,13 @@ def create(request):
 @csrf_exempt
 def register(request):
 	if request.POST:
+		username = request.POST['username']
+		password = request.POST['password']
 		form = UsersForm(request.POST,request.FILES)
 		if form.is_valid():
 			form.save()
+			request.session["username"]= username
+			request.session["password"]= password
 			return HttpResponseRedirect('/list')
 	else:
 		form = UsersForm()
@@ -42,6 +46,28 @@ def register(request):
 	args['form'] = form
 	return render_to_response('register.html',args)
 
+@csrf_exempt
+def login(request):
+	if request.POST:
+		username = request.POST['username']
+		password = request.POST['password']
+		user = Users.objects.get(username=username)
+		form = UsersForm(request.POST,request.FILES)
+		if user.password == password:
+			request.session["username"] = username
+			request.session["password"] = password
+			return HttpResponseRedirect('/list')
+	else:
+		form = UsersForm()
+	args = {}
+	args.update(csrf(request))
+	args['form'] = form
+	return render_to_response('login.html',args)
+
 def list(request):
 	Pics = Posts.objects.all()
-	return render_to_response('result.html',{'Pics':Pics})
+	if 'username' in request.session:
+		username = request.session["username"]
+	else:
+		username =""
+	return render_to_response('result.html',{'Pics':Pics,'username':username})
