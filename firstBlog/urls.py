@@ -13,4 +13,8 @@ urlpatterns = patterns('',
      url(r'^upload_file/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT+"/upload_file/"}),
      url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.PUBLIC_ROOT}),
      url(r'^register/$', 'blog.views.register'),
+     url(r'^detail/(?P<id>\d+)/$', 'blog.views.detail'),
+     url(r'^comment/$', 'blog.views.comment'),
+     url(r'^logout/$', 'blog.views.logout'),
+
 )

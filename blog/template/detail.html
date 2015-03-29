@@ -1,0 +1,49 @@
+{% include 'header.html' %} 
+	{{ username }}
+	<div class="container">
+	    <div class="col-md-2"></div>
+	    <div class="col-md-8">
+	    	<h2 style="text-align:center;">{{result.title}}</h2>
+	    	<img src="/{{result.src}}" style="width:100%;height:400px;">
+	    	<div>
+	    		<h3>please input your comment below:</h3>
+	    		<textarea id="comment-input" class="form-control" rows="3"></textarea>
+	    		<br>
+	    		<input style="float:right;" id="commit-submit" class="btn btn-danger" type="submit" value="submit">
+	    	</div>
+	    	<div style="width:100%; padding-top:40px;">
+	    		<hr>
+	    		{% for commentItem in comment %}
+	    		<div>
+		    		<span style="width:150px;display:inline-block; font-size:18px; font-weight:bold; color:#ff0000;">{{commentItem.author}}</span>
+		    		<span style="width:150px;display:inline-block; font-size:15px; font-weight:bold; color:#0000ff;">{{commentItem.content}}</span>
+		    		<hr>
+		    	</div>
+	    		{% endfor %}
+	    	</div>
+	    </div>
+	    <div class="col-md-2"></div>
+	</div>
+	{% include 'footer.html' %} 
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#commit-submit').click(function(){
+		var comment = $('#comment-input').val();
+		var id = {{result.id}}
+		$.get( "/comment", { content: comment ,id: id})
+		  .done(function( data ) {
+		    if(data.result)
+		    {
+		    	location.reload();
+		    }
+		    else
+		    {
+		    	alert(data.error)
+		    }
+		  });
+	})
+
+})
+</script>
+</html>

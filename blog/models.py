@@ -16,6 +16,11 @@ class Posts(models.Model):
 	src = models.ImageField(upload_to = get_upload_file_name)
 
 class Users(models.Model):
-
 	username = models.CharField(max_length = 100)
 	password = models.CharField(max_length = 100)
+
+class Comments(models.Model):
+	author = models.CharField(max_length = 30)
+	content = models.CharField(max_length = 100)
+	linkid = models.IntegerField(default =0)
+
